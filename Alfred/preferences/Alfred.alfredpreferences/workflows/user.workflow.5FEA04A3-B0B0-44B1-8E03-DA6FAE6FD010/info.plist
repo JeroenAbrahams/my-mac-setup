@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.chegva.office</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>68D3631D-5021-40A0-B6F2-F4AB6C36AA50</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6D19E8A2-E968-439A-87EC-D718E71EB379</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6D19E8A2-E968-439A-87EC-D718E71EB379</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>anzhihe</string>
+	<key>description</key>
+	<string>一键启动办公软件(A key to start the office software)</string>
+	<key>disabled</key>
+	<true/>
+	<key>name</key>
+	<string>startup</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>morning</string>
+				<key>subtext</key>
+				<string>A key to start office software
+A key to start office software</string>
+				<key>text</key>
+				<string>Start office</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>68D3631D-5021-40A0-B6F2-F4AB6C36AA50</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>paths</key>
+				<array/>
+				<key>toggle</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.launchfiles</string>
+			<key>uid</key>
+			<string>6D19E8A2-E968-439A-87EC-D718E71EB379</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>68D3631D-5021-40A0-B6F2-F4AB6C36AA50</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>6D19E8A2-E968-439A-87EC-D718E71EB379</key>
+		<dict>
+			<key>xpos</key>
+			<integer>270</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://chegva.com/3347.html</string>
+</dict>
+</plist>

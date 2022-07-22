@@ -1,0 +1,63 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 4,
+      "subtext" : {
+        "size" : 9,
+        "colorSelected" : "#7F7F7FFF",
+        "font" : "Helvetica",
+        "color" : "#A5A5A5FF"
+      },
+      "shortcut" : {
+        "size" : 10,
+        "colorSelected" : "#5D007CFF",
+        "font" : "Helvetica",
+        "color" : "#5D007CFF"
+      },
+      "backgroundSelected" : "#D1D1D1FF",
+      "text" : {
+        "size" : 10,
+        "colorSelected" : "#191919FF",
+        "font" : "Helvetica",
+        "color" : "#191919FF"
+      },
+      "iconPaddingHorizontal" : 5,
+      "roundness" : 0,
+      "paddingVertical" : 0,
+      "iconSize" : 40
+    },
+    "separator" : {
+      "color" : "#D4D4D4FF",
+      "thickness" : 1
+    },
+    "search" : {
+      "backgroundSelected" : "#3F638BFF",
+      "paddingHorizontal" : 0,
+      "spacing" : 10,
+      "text" : {
+        "size" : 12,
+        "colorSelected" : "#000000FF",
+        "font" : "Helvetica",
+        "color" : "#000000FF"
+      },
+      "background" : "#D1D1D1FF",
+      "roundness" : 0,
+      "paddingVertical" : 2
+    },
+    "scrollbar" : {
+      "color" : "#D4D4D4FF",
+      "thickness" : 2
+    },
+    "name" : "v2 theme",
+    "window" : {
+      "color" : "#EAEAEAFF",
+      "paddingHorizontal" : 10,
+      "width" : 440,
+      "borderPadding" : 10,
+      "borderColor" : "#1919197F",
+      "blur" : 0,
+      "roundness" : 12,
+      "paddingVertical" : 10
+    }
+  }
+}

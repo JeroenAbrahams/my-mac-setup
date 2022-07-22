@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : ":information_source: Rebased. Will rebase onto `main` once build is green.",
+    "dontautoexpand" : true,
+    "uid" : "0630D3BF-8FDD-4575-BAD1-751900BA76B2",
+    "name" : "Rebased",
+    "keyword" : "crb"
+  }
+}

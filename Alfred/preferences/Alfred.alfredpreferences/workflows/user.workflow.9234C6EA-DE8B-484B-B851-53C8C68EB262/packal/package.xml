@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Zapier for Alfred</name>
+  <version>1.01</version>
+  <bundle>com.zapier.alfredbasic</bundle>
+  <updated>1501238780</updated>
+  <file>zapier_for_alfred.alfredworkflow</file>
+</workflow>

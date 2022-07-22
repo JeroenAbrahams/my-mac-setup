@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Quick Translate</name>
+  <version>2.0.0</version>
+  <bundle>alfred-quick-translate</bundle>
+  <updated>1594723337</updated>
+  <file>quick-translate_200714191745.alfredworkflow</file>
+</workflow>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Notion Search</name>
+  <version>0.4.1</version>
+  <bundle>com.wrjlewis.notion-search</bundle>
+  <updated>1644957746</updated>
+  <file>notion.search.alfredworkflow</file>
+</workflow>

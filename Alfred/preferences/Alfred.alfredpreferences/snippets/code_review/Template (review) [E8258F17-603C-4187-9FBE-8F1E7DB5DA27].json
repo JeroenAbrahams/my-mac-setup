@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "## Overview\n<!-- Required. Why is this important\/necessary and what is the overarching architecture. -->\n\n## Screenshots\/Screencasts\n<!-- Optional. Provide supporting image\/video. -->\n\n## Details\n<!-- Optional. List the key features\/highlights as bullet points. -->\n",
+    "dontautoexpand" : true,
+    "uid" : "E8258F17-603C-4187-9FBE-8F1E7DB5DA27",
+    "name" : "Template (review)",
+    "keyword" : "crt"
+  }
+}

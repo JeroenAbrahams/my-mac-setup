@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Jira Worklog</name>
+  <version>1.0.0</version>
+  <bundle>net.dambacher.jira-worklog</bundle>
+  <updated>1604528781</updated>
+  <file>jira_worklog.alfredworkflow</file>
+</workflow>

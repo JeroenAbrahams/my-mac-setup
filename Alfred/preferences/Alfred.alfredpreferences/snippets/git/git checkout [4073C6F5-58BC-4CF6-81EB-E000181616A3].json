@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "git checkout {cursor}",
+    "uid" : "4073C6F5-58BC-4CF6-81EB-E000181616A3",
+    "name" : "git checkout",
+    "keyword" : "gitcho"
+  }
+}

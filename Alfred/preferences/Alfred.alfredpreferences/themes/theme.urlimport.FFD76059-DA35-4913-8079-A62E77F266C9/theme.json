@@ -1,0 +1,64 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 12,
+      "subtext" : {
+        "size" : 14,
+        "colorSelected" : "#FFFFFFBA",
+        "font" : "System Light",
+        "color" : "#8E95AEFF"
+      },
+      "shortcut" : {
+        "size" : 22,
+        "colorSelected" : "#FFFFFFA0",
+        "font" : "System Light",
+        "color" : "#FFC5E935"
+      },
+      "backgroundSelected" : "#0DA4A977",
+      "text" : {
+        "size" : 21,
+        "colorSelected" : "#FFFFFFDD",
+        "font" : "System Light",
+        "color" : "#FFFFFFB5"
+      },
+      "iconPaddingHorizontal" : 21,
+      "roundness" : 11,
+      "paddingVertical" : 9,
+      "iconSize" : 43
+    },
+    "search" : {
+      "backgroundSelected" : "#7678C13C",
+      "paddingHorizontal" : 21,
+      "spacing" : 0,
+      "text" : {
+        "size" : 48,
+        "colorSelected" : "#FFFFFFDD",
+        "font" : "Helvetica Neue Light",
+        "color" : "#FFFFFFF9"
+      },
+      "background" : "#4F4D907C",
+      "roundness" : 17,
+      "paddingVertical" : 14
+    },
+    "window" : {
+      "color" : "#3D387FDD",
+      "paddingHorizontal" : 0,
+      "width" : 507,
+      "borderPadding" : 3,
+      "borderColor" : "#FFFFFF74",
+      "blur" : 35,
+      "roundness" : 19,
+      "paddingVertical" : 0
+    },
+    "credit" : "🐬 Greg Kim",
+    "separator" : {
+      "color" : "#CBCBCB00",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#9E91C594",
+      "thickness" : 6
+    },
+    "name" : "Modern Cuteness 👾💘 (Spring 2022)"
+  }
+}

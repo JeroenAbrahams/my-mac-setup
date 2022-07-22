@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.rova.ttyme</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>FB681330-FB75-439A-8ED9-53110AC936DB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>32B23BEB-9C6E-43FC-9D34-F4313A8DCBAD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Rova</string>
+	<key>description</key>
+	<string>Control tyme</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>tTyme</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>set q to "{query}"
+
+global Blub
+set myArray to my theSplit(q, "|_|")
+
+on theSplit(theString, theDelimiter)
+	-- save delimiters to restore old settings
+	set oldDelimiters to AppleScript's text item delimiters
+	-- set delimiters to delimiter to be used
+	set AppleScript's text item delimiters to theDelimiter
+	-- create the array
+	set theArray to every text item of theString
+	-- restore the old setting
+	set AppleScript's text item delimiters to oldDelimiters
+	-- return the result
+	set Blub to theArray
+end theSplit
+
+on start(theProject, theTask)
+	tell application "Tyme2"
+		set p to the first item of (every project whose name = theProject)
+		set t to the first item of (every task of p whose name = theTask)
+		StartTrackerForTaskID (get id of t)
+	end tell
+end start
+
+if q is "stop" then
+	tell application "Tyme2"
+		set fetchedRecords to trackedTaskIDs as list			repeat with recordID in fetchedRecords				StopTrackerForTaskID recordID			end repeat
+	end tell
+else
+	my start(item 1 of Blub, item 2 of Blub)
+end if</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>32B23BEB-9C6E-43FC-9D34-F4313A8DCBAD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>tt</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>var query = "{query}".toLowerCase();
+
+var tyme = Application('Tyme2');
+
+var xml = "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+
+if ("stop".includes(query)) {
+	xml += "&lt;item arg='stop' uid='stop' autocomplete='stop' active='YES'&gt;&lt;title&gt;Stop&lt;/title&gt;&lt;subtitle&gt;Stop running task&lt;/subtitle&gt;&lt;/item&gt;"
+}
+
+var allProjectNames = tyme.projects.name();
+var allTasksNames = tyme.projects.tasks.name();
+var completedProjects = tyme.projects.completed();
+completedProjects
+nbProjects = allProjectNames.length;
+
+for (var i = 0; i &lt; nbProjects; i++) {
+	nbTasks = allTasksNames[i].length
+	tasksOfThisProject = allTasksNames[i];
+	for (var j = 0; j &lt; tasksOfThisProject.length; j++) {
+		projectName = allProjectNames[i];
+		taskName = tasksOfThisProject[j];
+         completed = completedProjects[i];
+
+		if ((projectName.toLowerCase().includes(query) || taskName.toLowerCase().includes(query)) &amp;&amp; completed == false) {
+			xml += "&lt;item arg='" + projectName + "|_|" + taskName + "' uid='" + projectName + ": " + taskName + "' autocomplete='" + projectName + ": " + taskName + "'&gt;&lt;title&gt;" + projectName + ": " + taskName + "&lt;/title&gt;&lt;/item&gt;";
+		}
+	}
+
+}
+
+
+xml += "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type in the project name or task name to start</string>
+				<key>title</key>
+				<string>Control Tyme</string>
+				<key>type</key>
+				<integer>7</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FB681330-FB75-439A-8ED9-53110AC936DB</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>32B23BEB-9C6E-43FC-9D34-F4313A8DCBAD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>315</integer>
+			<key>ypos</key>
+			<integer>165</integer>
+		</dict>
+		<key>FB681330-FB75-439A-8ED9-53110AC936DB</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>5</integer>
+			<key>xpos</key>
+			<integer>45</integer>
+			<key>ypos</key>
+			<integer>175</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.5</string>
+	<key>webaddress</key>
+	<string>https://github.com/roelvan</string>
+</dict>
+</plist>

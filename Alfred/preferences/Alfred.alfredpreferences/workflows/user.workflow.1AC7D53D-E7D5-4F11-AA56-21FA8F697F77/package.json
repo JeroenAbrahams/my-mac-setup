@@ -1,0 +1,18 @@
+{
+  "author": {
+    "name": "Juan Vazquez",
+    "email": "juanvme123@gmail.com"
+  },
+  "dependencies": {
+    "alfy": "^0.6.0"
+  },
+  "description": "Search for cards in Trello.",
+  "keywords": [
+    "alfred",
+    "workflow",
+    "alfy"
+  ],
+  "license": "MIT",
+  "name": "alfred-trello-card-search",
+  "version": "0.0.3"
+}

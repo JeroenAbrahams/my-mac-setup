@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>tTyme</name>
+  <version>0.9</version>
+  <bundle>com.tscho.ttyme</bundle>
+  <updated>1433190019</updated>
+  <file>ttyme.alfredworkflow</file>
+</workflow>

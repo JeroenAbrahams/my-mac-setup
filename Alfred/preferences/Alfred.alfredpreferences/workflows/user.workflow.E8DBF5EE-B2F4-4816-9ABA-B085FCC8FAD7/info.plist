@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.solove.create-notion-task</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>C83852D8-AF95-493C-9F5E-B6FE07F90EA4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E08AC820-903E-4800-BEF6-8F4B66EC51C9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E08AC820-903E-4800-BEF6-8F4B66EC51C9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FC5A6125-FC6D-479B-ADC0-D2234DD24C07</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Jon Solove</string>
+	<key>description</key>
+	<string>Creates a page for a task in a Notion Database.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Create Notion Task</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ntn</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Create Notion Task</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C83852D8-AF95-493C-9F5E-B6FE07F90EA4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>require "uri"
+require "json"
+require "net/http"
+
+bearer_token = ENV["BEARER_TOKEN"]
+database_id = ENV["DATABASE_ID"]
+
+request_args = "{query}"
+
+request_array = request_args.split(';')
+
+# Input looks like this:
+# 
+# ntn Category;This is the title;This is the body of the request 
+#
+# 0 - category
+# 1 - title
+# 2 - body
+
+category = request_array[0]
+title = request_array[1]
+name = "";
+
+# Make sure there is a category. If there isn't
+# we'll set it to "uncategorized"
+if (category.nil? || category == "")
+  category = "Uncategorized"
+end
+
+name = "[" + category + "] " + title
+
+body = ""
+# Make sure that there actually is a body
+if (request_array.length &gt; 2)
+	body = request_array[2]
+end
+
+url = URI("https://api.notion.com/v1/pages")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = "application/json"
+request["Notion-Version"] = "2021-08-16"
+request["Authorization"] = "Bearer " + bearer_token
+request.body = JSON.dump({
+  "parent": {
+    "database_id": database_id
+  },
+  "properties": {
+    "Name": {
+      "title": [
+        {
+          "text": {
+            "content": name
+          }
+        }
+      ]
+    },
+    "Status": {
+      "select": {
+        "name": "Organize"
+      }
+    },
+    "Category": {
+      "select": {
+        "name": category
+      }
+    }
+  },
+  "children": [
+    {
+      "object": "block",
+      "type": "paragraph",
+      "paragraph": {
+        "text": [
+          {
+            "type": "text",
+            "text": {
+              "content": body
+            }
+          }
+        ]
+      }
+    }
+  ]
+})
+
+response = https.request(request)
+puts "Created new task: " + name</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E08AC820-903E-4800-BEF6-8F4B66EC51C9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Notion Task Created</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>FC5A6125-FC6D-479B-ADC0-D2234DD24C07</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Please find details ono this workflow at https://github.com/jonsolove/alfred-notion-create-task</string>
+	<key>uidata</key>
+	<dict>
+		<key>C83852D8-AF95-493C-9F5E-B6FE07F90EA4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>245</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+		<key>E08AC820-903E-4800-BEF6-8F4B66EC51C9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>425</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+		<key>FC5A6125-FC6D-479B-ADC0-D2234DD24C07</key>
+		<dict>
+			<key>xpos</key>
+			<integer>605</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>BEARER_TOKEN</key>
+		<string></string>
+		<key>DATABASE_ID</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>BEARER_TOKEN</string>
+		<string>DATABASE_ID</string>
+	</array>
+	<key>version</key>
+	<string>0.0.4</string>
+	<key>webaddress</key>
+	<string>jonsolove.com</string>
+</dict>
+</plist>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.dambacher.jira-worklog</string>
+	<key>connections</key>
+	<dict>
+		<key>9FBBB62F-D828-4A03-8C86-0B86493D2D30</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CF38AC26-BFE8-48AA-8F84-6421931C1FB1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CF38AC26-BFE8-48AA-8F84-6421931C1FB1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>528A2FC0-7E25-435D-9BFE-8FC534E101A1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Jonas Dambacher</string>
+	<key>description</key>
+	<string>Create worklogs in JIRA</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Jira Worklog</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>jlog</string>
+				<key>subtext</key>
+				<string>Example: jlog A-123,I did something!,1.5</string>
+				<key>text</key>
+				<string>Jira Worklog</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>9FBBB62F-D828-4A03-8C86-0B86493D2D30</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Logged time</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>528A2FC0-7E25-435D-9BFE-8FC534E101A1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>script</key>
+				<string>$query = "{query}";
+
+$query = explode(",", $query);
+
+$ticket = $query[0];
+$comment = $query[1];
+$time = $query[2]*60*60;
+$time = (int) $time;
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL =&gt; "https://".getenv('jiraHost')."/rest/api/2/issue/".$ticket."/worklog",
+  CURLOPT_RETURNTRANSFER =&gt; true,
+  CURLOPT_ENCODING =&gt; "",
+  CURLOPT_MAXREDIRS =&gt; 10,
+  CURLOPT_TIMEOUT =&gt; 0,
+  CURLOPT_FOLLOWLOCATION =&gt; true,
+  CURLOPT_HTTP_VERSION =&gt; CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST =&gt; "POST",
+  CURLOPT_POSTFIELDS =&gt;'{"comment": "'.$comment.'", "timeSpentSeconds": '.$time.'}',
+  CURLOPT_HTTPHEADER =&gt; array(
+    "Authorization: Basic ".base64_encode(getenv('jiraUser').":".getenv('jiraPassword')),
+    "Content-Type: application/json"
+  )
+));
+
+$response = curl_exec($curl);
+
+if (curl_getinfo($curl, CURLINFO_HTTP_CODE) === 201) {
+  	$result = json_decode($response);
+	echo sprintf("%s: Logged %s for %s", $ticket, $query[2], $comment);
+} else {
+    echo "Logging failed!";
+}
+
+curl_close($curl);</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CF38AC26-BFE8-48AA-8F84-6421931C1FB1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This workflow creates JIRA worklogs.</string>
+	<key>uidata</key>
+	<dict>
+		<key>528A2FC0-7E25-435D-9BFE-8FC534E101A1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>455</integer>
+			<key>ypos</key>
+			<integer>45</integer>
+		</dict>
+		<key>9FBBB62F-D828-4A03-8C86-0B86493D2D30</key>
+		<dict>
+			<key>xpos</key>
+			<integer>15</integer>
+			<key>ypos</key>
+			<integer>45</integer>
+		</dict>
+		<key>CF38AC26-BFE8-48AA-8F84-6421931C1FB1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>235</integer>
+			<key>ypos</key>
+			<integer>45</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>jiraHost</key>
+		<string></string>
+		<key>jiraPassword</key>
+		<string></string>
+		<key>jiraUser</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>jiraHost</string>
+		<string>jiraUser</string>
+		<string>jiraPassword</string>
+	</array>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://dambacher.net</string>
+</dict>
+</plist>

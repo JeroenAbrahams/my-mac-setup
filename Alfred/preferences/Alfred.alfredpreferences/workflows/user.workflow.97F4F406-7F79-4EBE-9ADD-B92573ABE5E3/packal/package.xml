@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Open a Chrome bookmark with its profile</name>
+  <version>1.0.0</version>
+  <bundle>iamstevendao.alfred-chrome-bookmarks-with-profiles</bundle>
+  <updated>1623739941</updated>
+  <file>chrome_bookmarks_with_profiles.alfredworkflow</file>
+</workflow>

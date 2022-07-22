@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "## Overview\n<!-- Required. Describe, briefly, the behavior experienced and desired. -->\n\n## Screenshots\/Screencasts\n<!-- Optional. Attach screenshot(s) and\/or screencast(s) that demo the behavior. -->\n\n## Steps to Recreate\n<!-- Required. List exact steps (numbered list) to reproduce errant behavior. -->\n\n## Environment\n<!-- Required. What is your operating system, software version(s), etc. -->\n",
+    "dontautoexpand" : true,
+    "uid" : "3909C295-9EB9-45A0-B1EF-3A33B668EA31",
+    "name" : "Template (issue)",
+    "keyword" : "cri"
+  }
+}

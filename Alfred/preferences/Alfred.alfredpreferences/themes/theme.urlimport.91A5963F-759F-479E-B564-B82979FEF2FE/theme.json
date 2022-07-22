@@ -1,0 +1,65 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 7,
+      "subtext" : {
+        "size" : 8,
+        "colorSelected" : "#FEFFFFFF",
+        "font" : "System",
+        "color" : "#0000004C"
+      },
+      "shortcut" : {
+        "size" : 14,
+        "colorSelected" : "#FEFFFFFF",
+        "font" : "System",
+        "color" : "#00000066"
+      },
+      "backgroundSelected" : "#186DCBFF",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#FEFFFFFF",
+        "font" : "System",
+        "color" : "#212121FF"
+      },
+      "iconPaddingHorizontal" : 14,
+      "roundness" : 6,
+      "paddingVertical" : 6,
+      "iconSize" : 16
+    },
+    "search" : {
+      "backgroundSelected" : "#B2D7FF00",
+      "paddingHorizontal" : 6,
+      "spacing" : 0,
+      "text" : {
+        "size" : 26,
+        "colorSelected" : "#000000FF",
+        "font" : "System",
+        "color" : "#212121FF"
+      },
+      "background" : "#FFFFFF00",
+      "roundness" : 0,
+      "paddingVertical" : 7
+    },
+    "window" : {
+      "color" : "#FEFFFF00",
+      "paddingHorizontal" : 13,
+      "width" : 656,
+      "borderPadding" : 0,
+      "borderColor" : "#FEFFFF00",
+      "blur" : 0,
+      "roundness" : 9,
+      "paddingVertical" : 8
+    },
+    "credit" : "MrDuc",
+    "visualEffectMode" : 1,
+    "separator" : {
+      "color" : "#0000000F",
+      "thickness" : 1
+    },
+    "scrollbar" : {
+      "color" : "#A9A9A9FF",
+      "thickness" : 0
+    },
+    "name" : "MacOS Monterey"
+  }
+}

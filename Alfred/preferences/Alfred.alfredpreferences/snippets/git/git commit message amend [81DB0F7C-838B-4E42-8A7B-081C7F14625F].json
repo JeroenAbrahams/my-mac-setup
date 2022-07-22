@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "git commit --amend -m \"{cursor}\"",
+    "uid" : "81DB0F7C-838B-4E42-8A7B-081C7F14625F",
+    "name" : "git commit message amend",
+    "keyword" : "gitamc"
+  }
+}

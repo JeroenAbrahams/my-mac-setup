@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "git commit -m \"{cursor}\"",
+    "uid" : "B0D91990-3D99-4173-86B3-620E34CEABDE",
+    "name" : "git commit message",
+    "keyword" : "gitcm"
+  }
+}

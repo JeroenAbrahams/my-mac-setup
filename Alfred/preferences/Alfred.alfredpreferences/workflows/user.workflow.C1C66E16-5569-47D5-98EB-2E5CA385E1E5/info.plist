@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.crafttang.iosapp</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>57437172-903E-4E52-B95B-71F69C28819F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E8AE1551-D33E-467A-AB97-9F557BEB3420</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F4A42E59-2B58-49A2-BDF3-AE1F7539BF65</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>365BB48F-D4EC-401C-97FE-2431BF78F86A</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Remove this App from the simulator</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F4A42E59-2B58-49A2-BDF3-AE1F7539BF65</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Zhihui Tang</string>
+	<key>description</key>
+	<string>Reveal the App home folder of booted simulator</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>App Home Folder</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E8AE1551-D33E-467A-AB97-9F557BEB3420</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query=$1
+
+#Split previous argument
+OIFS=$IFS
+IFS=','
+arg=($1)
+IFS=$OIFS
+path="${arg[0]}"
+
+open ${path}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F4A42E59-2B58-49A2-BDF3-AE1F7539BF65</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>iosapp</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please Wait</string>
+				<key>script</key>
+				<string>items=""
+subtitletext='Press enter to reveal in Finder or hold ⌥ to delete'
+
+device_id=$(xcrun simctl list devices | grep Booted | sed -n 's/^.*\([A-F0-9]\{8\}-\([A-F0-9]\{4\}-\)\{3\}[A-F0-9]\{12\}\).*$/\1/p')
+for folder in ~/Library/Developer/CoreSimulator/Devices/$device_id/data/Containers/Data/Application/*; do
+    if [[ -a $folder/.com.apple.mobile_container_manager.metadata.plist ]]; then
+        bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :MCMMetadataIdentifier' $folder/.com.apple.mobile_container_manager.metadata.plist)
+
+        if [[ ${bundle_id} == com.apple.* ]]; then
+            continue
+        fi
+        items+="{ \"title\": \"${bundle_id}\", \"subtitle\": \"$subtitletext\", \"arg\": \"${folder}, ${bundle_id}\"},"
+    fi
+done
+
+if [[ "$items" == "" ]]; then
+        items+="{ \"title\": \"Make sure only 1 simulator is running\", \"subtitle\": \"Multiple or none simulator is running\", \"arg\": \"\", \"valid\": false},"
+fi
+
+#echo $items
+cat &lt;&lt; EOB
+{"items": [
+  $items
+]}
+EOB
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Open App home folder of your active simulator</string>
+				<key>title</key>
+				<string>Open App Home Folder</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>57437172-903E-4E52-B95B-71F69C28819F</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query=$1
+
+#Split previous argument
+OIFS=$IFS
+IFS=','
+arg=($1)
+IFS=$OIFS
+path="${arg[1]}"
+
+xcrun simctl uninstall booted ${path}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>365BB48F-D4EC-401C-97FE-2431BF78F86A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>An Alfred 4 workflow for getting your App home folder of your active simulator.
+
+Usage:
+iosapp
+
+Hold ⌥ to delete tha App from Simulator</string>
+	<key>uidata</key>
+	<dict>
+		<key>365BB48F-D4EC-401C-97FE-2431BF78F86A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>460</integer>
+			<key>ypos</key>
+			<integer>310</integer>
+		</dict>
+		<key>57437172-903E-4E52-B95B-71F69C28819F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>95</integer>
+			<key>ypos</key>
+			<integer>175</integer>
+		</dict>
+		<key>E8AE1551-D33E-467A-AB97-9F557BEB3420</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>F4A42E59-2B58-49A2-BDF3-AE1F7539BF65</key>
+		<dict>
+			<key>xpos</key>
+			<integer>455</integer>
+			<key>ypos</key>
+			<integer>175</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>0.0.3</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "git checkout -b {cursor}",
+    "uid" : "6E2D6D38-EF71-49DD-AE38-6D3DD4A0679A",
+    "name" : "Git create branch",
+    "keyword" : "gitchb"
+  }
+}

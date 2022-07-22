@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>32020C98-DD6A-4A5D-A9D9-BF3D0D5D419E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>hig</string>
+			<key>text</key>
+			<string>Search Apple Human Interface Guidelines for {query}</string>
+			<key>url</key>
+			<string>https://developer.apple.com/search/?q={query}&amp;group=HIG</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>C264712D-5144-47F3-B3A3-A084BDD39DDB</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>snippets</string>
+			<key>text</key>
+			<string>Search snippetsLab for {query}</string>
+			<key>url</key>
+			<string>snippetslab://search/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

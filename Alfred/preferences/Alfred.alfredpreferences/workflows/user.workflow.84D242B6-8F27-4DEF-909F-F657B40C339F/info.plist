@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.beccaria.alfredworkflow.xcodeshortcuts</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>A3C6B493-EA45-424C-ADF8-72293C9783A4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>44FA248F-4CC9-42CE-905B-90B20AD91A28</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B11B132B-4A61-4C05-8F4F-2111F454E6C6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C1E64A1A-AA66-4EF7-8E36-3573BEB3D12E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C1C35EF8-DDA7-4CEA-AECE-982FD5F3F8DA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A3C6B493-EA45-424C-ADF8-72293C9783A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C1E64A1A-AA66-4EF7-8E36-3573BEB3D12E</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>F Beccaria</string>
+	<key>description</key>
+	<string>Automate:  creating playgrounds &amp; cleaning cache files</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Xcode Shortcuts</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>{query=$1}
+osascript createPlayground.scpt $xcodeVersion "${playgroundFolder/#\~/$HOME}" {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C1E64A1A-AA66-4EF7-8E36-3573BEB3D12E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>xpg</string>
+				<key>subtext</key>
+				<string>usage: "xpg name" (name is optional)</string>
+				<key>text</key>
+				<string>Xcode - Create Playground</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B11B132B-4A61-4C05-8F4F-2111F454E6C6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>{query=$1}
+rm -rf ~/Library/Developer/Xcode/DerivedData/*
+rm -rf ~/Library/Caches/com.apple.dt.Xcode/*
+rm -rf $(getconf DARWIN_USER_CACHE_DIR)/org.llvm.clang/ModuleCache
+rm -rf $(getconf DARWIN_USER_CACHE_DIR)/org.llvm.clang.${USER}/ModuleCache</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A3C6B493-EA45-424C-ADF8-72293C9783A4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Xcode has been cleaned!</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>44FA248F-4CC9-42CE-905B-90B20AD91A28</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>xclean</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Xcode Clean-up Data &amp; Cache</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C1C35EF8-DDA7-4CEA-AECE-982FD5F3F8DA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Set the destination of new playground files via the "playgroundFolder" environment variable here. 
+The default is: "~/Desktop" (sans quotes)
+
+
+Set the name of the default Xcode installation you'd like to use to create the playground here (i.e., the entire Xcode filename, less the extension).  
+The default is: "Xcode" (sans quotes)</string>
+	<key>uidata</key>
+	<dict>
+		<key>44FA248F-4CC9-42CE-905B-90B20AD91A28</key>
+		<dict>
+			<key>xpos</key>
+			<integer>635</integer>
+			<key>ypos</key>
+			<integer>570</integer>
+		</dict>
+		<key>A3C6B493-EA45-424C-ADF8-72293C9783A4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>375</integer>
+			<key>ypos</key>
+			<integer>570</integer>
+		</dict>
+		<key>B11B132B-4A61-4C05-8F4F-2111F454E6C6</key>
+		<dict>
+			<key>note</key>
+			<string>-----------------
+Keyword (default "xpg") used to invoke this script and create a new playground.
+-----------------
+You can pass a name for your playground (optional) by adding a space after the keyword and the name. 
+
+So for example, if you want to create a playground called "I like Jam.playground", you would just type:
+
+     xpg I like Jam
+
+Alternatively, if you just type "xpg" and hit ENTER), the playground filename will default to a times stamp 
+-----------------</string>
+			<key>xpos</key>
+			<integer>85</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>C1C35EF8-DDA7-4CEA-AECE-982FD5F3F8DA</key>
+		<dict>
+			<key>note</key>
+			<string>-----------------
+Kewyword used to clean Xcode's DerivedData and cache folders.
+-----------------
+Just type the keyword and hit ENTER
+-----------------</string>
+			<key>xpos</key>
+			<integer>85</integer>
+			<key>ypos</key>
+			<integer>570</integer>
+		</dict>
+		<key>C1E64A1A-AA66-4EF7-8E36-3573BEB3D12E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>305</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>playgroundFolder</key>
+		<string>~/Desktop</string>
+		<key>xcodeVersion</key>
+		<string>Xcode</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string>https://www.beccaria.com</string>
+</dict>
+</plist>

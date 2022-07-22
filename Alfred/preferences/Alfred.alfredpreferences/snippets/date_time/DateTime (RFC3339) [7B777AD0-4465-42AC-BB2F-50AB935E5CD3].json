@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "{date:yyyy-MM-dd}T{time +7h:HH:mm:ss}+00:00",
+    "uid" : "7B777AD0-4465-42AC-BB2F-50AB935E5CD3",
+    "name" : "DateTime (RFC3339)",
+    "keyword" : "d3"
+  }
+}

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>iamstevendao.alfred-chrome-bookmarks-with-profiles</string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>1DE5749E-23C2-48F0-8F1E-13D900008DA5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>66D3E9E5-CEF3-44C2-A792-25708398A411</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Steven Dao</string>
+	<key>description</key>
+	<string>Open a Chrome bookmark with its profile</string>
+	<key>disabled</key>
+	<true/>
+	<key>name</key>
+	<string>Chrome Bookmarks with Profiles</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "{query}" --args --profile-directory="$profile"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>66D3E9E5-CEF3-44C2-A792-25708398A411</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>chr</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>#!/usr/bin/env python
+
+import os
+import json
+
+def get_bookmarks(browser, path):
+  bookmarks = []
+  if os.path.isdir(path) == False:
+    return bookmarks
+  folders = [ name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name)) ]
+  for folder in folders:
+    profileFile = "{}/{}/Preferences".format(path, folder)
+    if folder != 'System Profile' and os.path.isfile(profileFile):
+      with open(profileFile) as pf:
+        data = json.load(pf)
+        profileName = data['profile']['name']
+        bookmarkFile = "{}/{}/Bookmarks".format(path, folder)
+        if folder != 'System Profile' and os.path.isfile(bookmarkFile):
+          with open(bookmarkFile) as bf:
+            data = json.load(bf)
+            for child in data['roots']['bookmark_bar']['children']:
+              bookmarks.append({
+                "icon": {
+                  "path": "{}/{}/Google Profile Picture.png".format(path, folder)
+                },
+                "arg": child['url'],
+                "variables": {
+                  "browser": browser['name'],
+                  "profile": folder,
+                },
+                "subtitle": "{} - Bookmarks Bar: {}".format(profileName, child['url']),
+                "title": "{}".format(child['name'].encode('utf-8')),
+                "match": "{} {} Bookmarks Bar {}".format(child['name'].encode('utf-8'), profileName, child['url']),
+              })
+
+            for topChild in data['roots']['other']['children']:
+              for child in topChild['children']:
+                bookmarks.append({
+                  "icon": {
+                    "path": "{}/{}/Google Profile Picture.png".format(path, folder)
+                  },
+                  "arg": child['url'],
+                  "variables": {
+                    "browser": browser['name'],
+                    "profile": folder,
+                  },
+                  "subtitle": "{} - {}: {}".format(profileName, topChild['name'], child['url']),
+                  "title": "{}".format(child['name'].encode('utf-8')),
+                  "match": "{} {} {} {}".format(child['name'].encode('utf-8'), profileName, topChild['name'], child['url']),
+                })
+  return bookmarks
+
+
+home = os.path.expanduser("~")
+
+browsers = [
+  { 'name': 'CHROME', 'path': '/Library/Application Support/Google/Chrome', 'icon': 'chrome.icns' },
+]
+
+bookmarks = []
+
+for browser in browsers:
+  path = "{}/{}".format(home, browser['path'])
+  prof = get_bookmarks(browser, path)
+  bookmarks += prof
+
+print json.dumps({"items": bookmarks}, indent=2)
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Open a bookmark</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1DE5749E-23C2-48F0-8F1E-13D900008DA5</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>1DE5749E-23C2-48F0-8F1E-13D900008DA5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>66D3E9E5-CEF3-44C2-A792-25708398A411</key>
+		<dict>
+			<key>xpos</key>
+			<integer>365</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>v1.0.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/iamstevendao/alfred-chrome-bookmarks-with-profiles</string>
+</dict>
+</plist>
