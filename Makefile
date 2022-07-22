@@ -13,13 +13,34 @@ espanso_setup:
 	cp ./Espanso/base.yml ~/Library/Application\ Support/espanso/match/base.yml
 
 brew_cask_installs:
-	brew install --cask alfred
+## Default
 	brew install --cask google-chrome
+	brew install --cask 1password
+## Development
+	brew install --cask iterm2
 	brew install --cask postman
+	brew install --cask visual-studio-code
+## brew install --cask appcleaner
+## Productivity
+	brew install --cask grammarly
+	brew install --cask espanso
+	brew install --cask monitorcontrol
+	brew install --cask alfred
+## brew install --cask raycast
+##Uses to automatic open google links in a google App
+	brew install --cask finicky
+## Aviobook
+	brew install --cask iexplorer
+	brew install --cask bitwarden
+	brew install --cask tunnelblick
+	brew install --cask mongodb-realm-studio
+
+## brew install --cask cheatsheet
+## brew install --cask alt-tab
 
 brew_installs: ## Install all Brew packages
-	brew tap espanso/espanso
-	brew install espanso
+## brew tap espanso/espanso
+## brew install espanso
 	brew install zsh
 	brew install plantuml
 	brew install robotsandpencils/made/xcodes

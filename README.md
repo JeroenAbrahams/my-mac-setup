@@ -38,10 +38,26 @@ In this repository, you can find my mac setup.
 * [Espanso](https://espanso.org)
 * [Finicky](/Finicky/): Choose which URL is opened in which browser
 * [CheatSheet](https://www.mediaatelier.com/CheatSheet/?ref=CustomShortcuts): Shows shortcuts for each app
+* [Cron](https://cron.com/join/rscnvjpm)
 * [CustomShortcuts](https://www.houdah.com/customShortcuts/?ref=mediaatelier): Change custom shortcuts
 * [Dozer](https://github.com/Mortennn/Dozer): Macbar management
+* [Magnet](https://magnet.crowdcafe.com)
+* [1Password](https://1password.com)
+
+### App Store
+* [Espanso Triggers](https://github.com/einstweilen/espanso-triggers/releases/tag/1.1) shows all shortcuts per trigger.
+* [Amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12)
+* [Devcleaner](https://apps.apple.com/us/app/devcleaner-for-xcode/id1388020431?mt=12)
+* [Snippetslab](https://apps.apple.com/us/app/snippetslab/id1006087419?mt=12)
+* [Tyme 2](https://apps.apple.com/us/app/tyme-2/id1063996724?mt=12)
+
+
+## Designer tools
+* [Affinity Designer](https://affinity.serif.com/en-gb/)
+* [Affinity Photo](https://affinity.serif.com/en-gb/)
 
 ## Developer tools
 * [iSimulator](https://github.com/wigl/iSimulator)
- 
-This tool opens links in the correct browser
+
+## Aviobook
+* [Transporter](https://apps.apple.com/us/app/transporter/id1450874784?mt=12)
